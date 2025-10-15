@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaming Portal</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -21,11 +17,7 @@
             padding: 20px;
         }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
+        @keyframes fadeIn { to { opacity: 1; } }
 
         .header {
             text-align: center;
@@ -43,18 +35,10 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
-        .username {
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        .subtitle {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.1rem;
-        }
+        .username { color: #667eea; font-weight: bold; }
+        .subtitle { color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; }
 
         .games-grid {
             display: grid;
@@ -95,39 +79,24 @@
             margin-bottom: 15px;
         }
 
-        .game-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .game-description {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.5;
-        }
+        .game-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 8px; color: #fff; }
+        .game-description { font-size: 0.95rem; color: rgba(255, 255, 255, 0.7); line-height: 1.5; }
 
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             align-items: center;
             justify-content: center;
         }
 
-        .modal.active {
-            display: flex;
-        }
+        .modal.active { display: flex; }
 
         .modal-content {
-            width: 95%;
-            height: 95%;
+            width: 95%; height: 95%;
             background: #1a1a2e;
             border-radius: 15px;
             overflow: hidden;
@@ -143,18 +112,14 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
+        .modal-title { font-size: 1.5rem; font-weight: 600; }
 
         .close-btn {
             background: rgba(255, 255, 255, 0.1);
             border: none;
             color: #fff;
             font-size: 1.5rem;
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -165,20 +130,11 @@
             transform: rotate(90deg);
         }
 
-        .game-frame {
-            width: 100%;
-            height: calc(100% - 70px);
-            border: none;
-        }
+        .game-frame { width: 100%; height: calc(100% - 70px); border: none; }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .games-grid {
-                grid-template-columns: 1fr;
-            }
+            h1 { font-size: 2rem; }
+            .games-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -189,12 +145,14 @@
     </div>
 
     <div class="games-grid">
-        <a class="game-card" onclick="openGame('BitLife', 'https://bitlifeonline.github.io/'); return false;">
+        <!-- Updated BitLife Card -->
+        <a class="game-card" onclick="openGame('BitLife', 'games/bitlife/index.html'); return false;">
             <div class="game-icon">🎮</div>
             <div class="game-title">BitLife</div>
             <div class="game-description">Live a virtual life from birth to death. Make choices and see how your life unfolds!</div>
         </a>
 
+        <!-- Other Games (unchanged) -->
         <a class="game-card" onclick="openGame('Archers', 'https://www.crazygames.com/embed/archers'); return false;">
             <div class="game-icon">🏹</div>
             <div class="game-title">Archers</div>
@@ -231,13 +189,14 @@
             <div class="game-description">Slide and merge tiles to reach the 2048 tile in this addictive puzzle game!</div>
         </a>
 
-        <a class="game-card" onclick="openGame('Snake', 'https://www.crazygames.com/embed/snake-io'); return false;">
+        <a class="game-card" onclick="openGame('Snake.io', 'https://www.crazygames.com/embed/snake-io'); return false;">
             <div class="game-icon">🐍</div>
             <div class="game-title">Snake.io</div>
             <div class="game-description">Grow your snake by eating pellets while avoiding other snakes!</div>
         </a>
     </div>
 
+    <!-- Game Modal -->
     <div class="modal" id="gameModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -249,19 +208,18 @@
     </div>
 
     <script>
+        // Load saved username
         function getUsername() {
             const cookies = document.cookie.split('; ');
             for (let cookie of cookies) {
                 const [key, value] = cookie.split('=');
-                if (key === 'username') {
-                    return decodeURIComponent(value);
-                }
+                if (key === 'username') return decodeURIComponent(value);
             }
             return 'Guest';
         }
-
         document.getElementById('username').textContent = getUsername();
 
+        // Modal game loader
         function openGame(title, url) {
             document.getElementById('modalTitle').textContent = title;
             document.getElementById('gameFrame').src = url;
@@ -274,15 +232,11 @@
         }
 
         document.getElementById('gameModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeGame();
-            }
+            if (e.target === this) closeGame();
         });
 
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeGame();
-            }
+            if (e.key === 'Escape') closeGame();
         });
     </script>
 </body>
