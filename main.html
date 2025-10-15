@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BitLife - Play Now</title>
+    <title>Gaming Portal</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -14,71 +14,95 @@
             color: #fff;
             opacity: 0;
             animation: fadeIn 0.5s ease forwards;
+            padding: 20px;
         }
 
         @keyframes fadeIn { to { opacity: 1; } }
 
         .header {
             text-align: center;
+            margin-bottom: 40px;
             padding: 20px;
             background: rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .username { color: #667eea; font-weight: bold; }
+        .subtitle { color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; }
 
-        .controls {
-            position: fixed;
-            top: 90px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-            z-index: 100;
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
-        .btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
+
+        .game-icon {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .game-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 8px; color: #fff; }
+        .game-description { font-size: 0.95rem; color: rgba(255, 255, 255, 0.7); line-height: 1.5; }
 
         @media (max-width: 768px) {
-            h1 { font-size: 1.5rem; }
-            .controls { top: 70px; right: 10px; }
-            .btn { padding: 8px 15px; font-size: 0.8rem; }
-            .header { padding: 15px; }
+            h1 { font-size: 2rem; }
+            .games-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>BitLife - <span class="username" id="username"></span></h1>
+        <h1>Hello, <span class="username" id="username"></span>!</h1>
+        <p class="subtitle">Choose a game to play</p>
     </div>
 
-    <div class="controls">
-        <button class="btn" onclick="window.location.href='index.html'">Back to Login</button>
+    <div class="games-grid">
+        <a class="game-card" href="play.html">
+            <div class="game-icon">🎮</div>
+            <div class="game-title">BitLife</div>
+            <div class="game-description">Live a virtual life from birth to death. Make choices and see how your life unfolds!</div>
+        </a>
     </div>
 
     <script>
-        // Load saved username
         function getUsername() {
             const cookies = document.cookie.split('; ');
             for (let cookie of cookies) {
@@ -88,9 +112,6 @@
             return 'Guest';
         }
         document.getElementById('username').textContent = getUsername();
-
-        // Redirect to BitLife game
-        window.location.href = 'games/bitlife/index.html';
     </script>
 </body>
 </html>
