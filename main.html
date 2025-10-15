@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaming Portal</title>
+    <title>BitLife - Play Now</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -14,197 +14,67 @@
             color: #fff;
             opacity: 0;
             animation: fadeIn 0.5s ease forwards;
-            padding: 20px;
         }
 
         @keyframes fadeIn { to { opacity: 1; } }
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
             padding: 20px;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 2rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .username { color: #667eea; font-weight: bold; }
-        .subtitle { color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; }
 
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .game-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .game-card:hover {
-            transform: translateY(-5px);
-            border-color: #667eea;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .game-icon {
-            width: 100%;
-            height: 150px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            margin-bottom: 15px;
-        }
-
-        .game-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 8px; color: #fff; }
-        .game-description { font-size: 0.95rem; color: rgba(255, 255, 255, 0.7); line-height: 1.5; }
-
-        .modal {
-            display: none;
+        .controls {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal.active { display: flex; }
-
-        .modal-content {
-            width: 95%; height: 95%;
-            background: #1a1a2e;
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .modal-header {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px 20px;
+            top: 90px;
+            right: 20px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 10px;
+            z-index: 100;
         }
 
-        .modal-title { font-size: 1.5rem; font-weight: 600; }
-
-        .close-btn {
+        .btn {
             background: rgba(255, 255, 255, 0.1);
-            border: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: #fff;
-            font-size: 1.5rem;
-            width: 40px; height: 40px;
-            border-radius: 50%;
+            padding: 10px 20px;
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
         }
 
-        .close-btn:hover {
+        .btn:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: rotate(90deg);
+            transform: translateY(-2px);
         }
-
-        .game-frame { width: 100%; height: calc(100% - 70px); border: none; }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .games-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.5rem; }
+            .controls { top: 70px; right: 10px; }
+            .btn { padding: 8px 15px; font-size: 0.8rem; }
+            .header { padding: 15px; }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Hello, <span class="username" id="username"></span>!</h1>
-        <p class="subtitle">Choose a game to play</p>
+        <h1>BitLife - <span class="username" id="username"></span></h1>
     </div>
 
-    <div class="games-grid">
-        <!-- Updated BitLife Card -->
-        <a class="game-card" onclick="openGame('BitLife', 'games/bitlife/index.html'); return false;">
-            <div class="game-icon">🎮</div>
-            <div class="game-title">BitLife</div>
-            <div class="game-description">Live a virtual life from birth to death. Make choices and see how your life unfolds!</div>
-        </a>
-
-        <!-- Other Games (unchanged) -->
-        <a class="game-card" onclick="openGame('Archers', 'https://www.crazygames.com/embed/archers'); return false;">
-            <div class="game-icon">🏹</div>
-            <div class="game-title">Archers</div>
-            <div class="game-description">Aim and shoot arrows at your opponents in this fun archery battle game!</div>
-        </a>
-
-        <a class="game-card" onclick="openGame('Subway Surfers', 'https://subwaysurfers.io/'); return false;">
-            <div class="game-icon">🚇</div>
-            <div class="game-title">Subway Surfers</div>
-            <div class="game-description">Run, jump, and slide through subway tracks while avoiding obstacles!</div>
-        </a>
-
-        <a class="game-card" onclick="openGame('1v1.LOL', 'https://1v1.lol/'); return false;">
-            <div class="game-icon">🔫</div>
-            <div class="game-title">1v1.LOL</div>
-            <div class="game-description">Battle royale building game with fast-paced shooting action!</div>
-        </a>
-
-        <a class="game-card" onclick="openGame('Slope', 'https://slope-game.io/'); return false;">
-            <div class="game-icon">🎱</div>
-            <div class="game-title">Slope</div>
-            <div class="game-description">Guide a ball down an endless slope while avoiding obstacles!</div>
-        </a>
-
-        <a class="game-card" onclick="openGame('Retro Bowl', 'https://retrobowl.app/'); return false;">
-            <div class="game-icon">🏈</div>
-            <div class="game-title">Retro Bowl</div>
-            <div class="game-description">Manage your football team and lead them to victory in this retro-style game!</div>
-        </a>
-
-        <a class="game-card" onclick="openGame('2048', 'https://play2048.co/'); return false;">
-            <div class="game-icon">🔢</div>
-            <div class="game-title">2048</div>
-            <div class="game-description">Slide and merge tiles to reach the 2048 tile in this addictive puzzle game!</div>
-        </a>
-
-        <a class="game-card" onclick="openGame('Snake.io', 'https://www.crazygames.com/embed/snake-io'); return false;">
-            <div class="game-icon">🐍</div>
-            <div class="game-title">Snake.io</div>
-            <div class="game-description">Grow your snake by eating pellets while avoiding other snakes!</div>
-        </a>
-    </div>
-
-    <!-- Game Modal -->
-    <div class="modal" id="gameModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title" id="modalTitle">Game</div>
-                <button class="close-btn" onclick="closeGame()">×</button>
-            </div>
-            <iframe class="game-frame" id="gameFrame" src="" allow="fullscreen; autoplay; encrypted-media"></iframe>
-        </div>
+    <div class="controls">
+        <button class="btn" onclick="window.location.href='index.html'">Back to Login</button>
     </div>
 
     <script>
@@ -219,25 +89,8 @@
         }
         document.getElementById('username').textContent = getUsername();
 
-        // Modal game loader
-        function openGame(title, url) {
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('gameFrame').src = url;
-            document.getElementById('gameModal').classList.add('active');
-        }
-
-        function closeGame() {
-            document.getElementById('gameModal').classList.remove('active');
-            document.getElementById('gameFrame').src = '';
-        }
-
-        document.getElementById('gameModal').addEventListener('click', function(e) {
-            if (e.target === this) closeGame();
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeGame();
-        });
+        // Redirect to BitLife game
+        window.location.href = 'games/bitlife/index.html';
     </script>
 </body>
 </html>
