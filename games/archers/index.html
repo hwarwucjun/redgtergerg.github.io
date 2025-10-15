@@ -20,35 +20,10 @@
     <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <style>
-        :root {
-            --apple-blue: #007AFF;
-            --apple-indigo: #5856D6;
-            --apple-purple: #AF52DE;
-            --apple-pink: #FF2D55;
-            --apple-red: #FF3B30;
-            --apple-orange: #FF9500;
-            --apple-yellow: #FFCC00;
-            --apple-green: #34C759;
-            --apple-teal: #5AC8FA;
-            --apple-gray: #8E8E93;
-            --apple-gray2: #AEAEB2;
-            --apple-gray3: #C7C7CC;
-            --apple-gray4: #D1D1D6;
-            --apple-gray5: #E5E5EA;
-            --apple-gray6: #F2F2F7;
-            --apple-dark-bg: #1C1C1E;
-            --apple-dark-elevated: #2C2C2E;
-        }
-
         body {
-            background-color: var(--apple-gray6);
-            color: #333333;
+            background-color: #f2f2f7;
+            color: #333;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        .dark-mode {
-            background-color: var(--apple-dark-bg);
-            color: #FFFFFF;
         }
 
         .game-container {
@@ -56,6 +31,7 @@
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             background-color: white;
+            margin-bottom: 2rem;
         }
 
         .game-frame-container {
@@ -76,7 +52,7 @@
         }
 
         .apple-button {
-            background-color: var(--apple-blue);
+            background-color: #007AFF;
             border-radius: 8px;
             color: white;
             font-weight: 600;
@@ -88,51 +64,12 @@
             transform: translateY(-1px);
         }
 
-        .section-header {
-            color: var(--apple-blue);
-            border-bottom: 2px solid var(--apple-gray5);
-            padding-bottom: 0.5rem;
-        }
-
-        .feature-card {
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            background-color: white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        }
-
         header {
-            background: linear-gradient(to right, var(--apple-blue), var(--apple-teal));
+            background: linear-gradient(to right, #007AFF, #5AC8FA);
         }
 
         footer {
-            background-color: var(--apple-dark-elevated);
-        }
-
-        .faq-item {
-            overflow: hidden;
-            transition: all 0.3s ease;
-            margin-bottom: 1rem;
-        }
-
-        .faq-content {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: all 0.3s ease-in-out;
-            padding: 0 1.5rem;
-        }
-
-        .faq-content.active {
-            max-height: 1000px;
-            opacity: 1;
-            padding: 1.5rem;
+            background-color: #2C2C2E;
         }
 
         .fullscreen-btn {
@@ -146,7 +83,6 @@
             border-radius: 5px;
             padding: 8px 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -179,22 +115,6 @@
             border: none;
         }
 
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: var(--apple-dark-bg);
-                color: white;
-            }
-
-            .game-container,
-            .feature-card {
-                background-color: var(--apple-dark-elevated);
-            }
-
-            .section-header {
-                border-bottom-color: var(--apple-gray);
-            }
-        }
-
         @media (min-width: 1024px) {
             .game-frame-container {
                 padding-bottom: 50%;
@@ -207,14 +127,6 @@
                 padding-bottom: 100%;
             }
 
-            .faq-content {
-                padding: 0 1rem;
-            }
-
-            .faq-content.active {
-                padding: 1rem;
-            }
-
             .fullscreen-btn {
                 padding: 6px 10px;
                 font-size: 12px;
@@ -225,28 +137,15 @@
 
 <body class="min-h-screen flex flex-col">
     <header class="py-6 text-white">
-        <div class="container mx-auto px-4 md:px-8">
-            <nav class="flex justify-between items-center mb-8">
-                <a href="/" class="text-xl font-bold">Ragdoll Archers</a>
-                <div class="flex space-x-4">
-                    <a href="#how-to-play" class="hover:text-gray-300 transition">How to Play</a>
-                    <a href="#features" class="hover:text-gray-300 transition">Features</a>
-                    <a href="#play-now" class="hover:text-gray-300 transition">Play Now</a>
-                </div>
-            </nav>
-            <div class="text-center max-w-4xl mx-auto">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Ragdoll Archers</h1>
-                <p class="text-xl md:text-2xl mb-8">Master the bow, defeat your enemies, and become the ultimate archer
-                    in this addictive physics-based game!</p>
-                <a href="#play-now" class="apple-button px-8 py-3 text-lg inline-block">Play Now</a>
-            </div>
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Ragdoll Archers</h1>
+            <p class="text-xl md:text-2xl mb-8">Master the bow, defeat your enemies, and become the ultimate archer!</p>
+            <a href="#play-now" class="apple-button px-8 py-3 text-lg inline-block">Play Now</a>
         </div>
     </header>
 
     <main class="container mx-auto px-4 md:px-8 py-8 flex-grow">
-        <section class="mb-16 game-container p-4 md:p-6">
-            <h2 id="play-now" class="text-2xl md:text-3xl font-semibold mb-4 section-header">Play Ragdoll Archers Online
-            </h2>
+        <section id="play-now" class="game-container p-4 md:p-6">
             <div class="relative">
                 <div id="game-container" class="game-frame-container">
                     <button id="fullscreen-btn" class="fullscreen-btn">
@@ -257,200 +156,23 @@
                         </svg>
                     </button>
                     <iframe src="https://bitlifeonline.github.io/ragdoll-archers" id="game-frame"
-                        title="Play Ragdoll Archers online game" allowfullscreen
-                        class="game-frame rounded-lg shadow-md">
+                        title="Play Ragdoll Archers online game" allowfullscreen class="game-frame rounded-lg shadow-md">
                         Your browser does not support iframes. Please update your browser to play Ragdoll Archers.
                     </iframe>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-16">
-            <h2 id="how-to-play" class="text-2xl md:text-3xl font-semibold mb-6 section-header">How to Play</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="feature-card p-6">
-                    <h3 class="text-xl font-semibold mb-3">Aim & Shoot</h3>
-                    <p>Click or tap and drag to aim your bow. Release to fire arrows at your enemies. Master the
-                        trajectory to hit your targets accurately.</p>
-                </div>
-                <div class="feature-card p-6">
-                    <h3 class="text-xl font-semibold mb-3">Strategic Timing</h3>
-                    <p>Time your shots perfectly to create devastating chain reactions. Use the physics-based
-                        environment to your advantage.</p>
-                </div>
-                <div class="feature-card p-6">
-                    <h3 class="text-xl font-semibold mb-3">Survive & Progress</h3>
-                    <p>Defeat waves of enemies to progress through increasingly challenging levels. Each level presents
-                        new obstacles and enemy types.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-16">
-            <h2 id="features" class="text-2xl md:text-3xl font-semibold mb-6 section-header">Game Features</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-green-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span>Realistic physics-based ragdoll animations</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-green-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span>Multiple challenging levels with increasing difficulty</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-green-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span>Various enemy types with unique behaviors</span>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-green-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span>Responsive controls for both desktop and mobile play</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-green-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span>No download required - play instantly in your browser</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-green-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span>Challenging achievements to unlock and master</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-16">
-            <h2 class="text-2xl md:text-3xl font-semibold mb-6 section-header">Why Players Love Ragdoll Archers</h2>
-            <div class="bg-white dark:bg-gray-800 text-black dark:text-white p-6 rounded-lg shadow-md">
-                <p class="mb-4">Ragdoll Archers combines the precision of archery with the unpredictable fun of
-                    physics-based gameplay. The satisfaction of landing the perfect shot and watching the ragdoll
-                    enemies fly through the air creates an addictive gaming experience that keeps players coming back
-                    for more.</p>
-                <p>Whether you're looking for a quick game during your break or want to master all the levels and
-                    challenges, Ragdoll Archers offers accessible yet deep gameplay suitable for gamers of all ages and
-                    skill levels.</p>
-            </div>
-        </section>
-
-        <section class="mb-16">
-            <h2 class="text-2xl md:text-3xl font-semibold mb-6 section-header">Frequently Asked Questions</h2>
-            <div class="space-y-4">
-                <div class="faq-item border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden">
-                    <button
-                        class="w-full px-6 py-4 text-left font-medium focus:outline-none bg-gray-100 dark:bg-gray-700">
-                        Is Ragdoll Archers free to play?
-                    </button>
-                    <div class="faq-content px-6 py-4 bg-white dark:bg-gray-800 text-black dark:text-white">
-                        <p>Yes, Ragdoll Archers is completely free to play in your web browser. No downloads or
-                            purchases required to enjoy the full game experience.</p>
-                    </div>
-                </div>
-                <div class="faq-item border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden">
-                    <button
-                        class="w-full px-6 py-4 text-left font-medium focus:outline-none bg-gray-100 dark:bg-gray-700">
-                        Can I play Ragdoll Archers on mobile devices?
-                    </button>
-                    <div class="faq-content px-6 py-4 bg-white dark:bg-gray-800 text-black dark:text-white">
-                        <p>Absolutely! Ragdoll Archers is fully optimized for touchscreen controls, making it perfect
-                            for playing on smartphones and tablets.</p>
-                    </div>
-                </div>
-                <div class="faq-item border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden">
-                    <button
-                        class="w-full px-6 py-4 text-left font-medium focus:outline-none bg-gray-100 dark:bg-gray-700">
-                        Does Ragdoll Archers require high-end hardware?
-                    </button>
-                    <div class="faq-content px-6 py-4 bg-white dark:bg-gray-800 text-black dark:text-white">
-                        <p>No, Ragdoll Archers is designed to run smoothly on most devices. The game adapts to various
-                            hardware specifications to ensure a great experience regardless of your setup.</p>
-                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer class="py-8 text-white">
-        <div class="container mx-auto px-4 md:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Ragdoll Archers</h3>
-                    <p>The ultimate archery battle game. Aim, shoot, and destroy your enemies in this addictive
-                        physics-based adventure.</p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-gray-300 transition">Home</a></li>
-                        <li><a href="#play-now" class="hover:text-gray-300 transition">Play Now</a></li>
-                        <li><a href="#how-to-play" class="hover:text-gray-300 transition">How to Play</a></li>
-                        <li><a href="#features" class="hover:text-gray-300 transition">Features</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Legal</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-gray-300 transition">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-gray-300 transition">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-gray-300 transition">Cookie Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="pt-8 border-t border-gray-700 text-center">
-                <p>&copy; 2025 Ragdoll Archers. All rights reserved.</p>
-            </div>
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <p>&copy; 2025 Ragdoll Archers. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // FAQ Accordion functionality
-            const faqButtons = document.querySelectorAll('.faq-item button');
-
-            faqButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const content = button.nextElementSibling;
-                    content.classList.toggle('active');
-
-                    // Close other open FAQs
-                    faqButtons.forEach(otherButton => {
-                        if (otherButton !== button) {
-                            otherButton.nextElementSibling.classList.remove('active');
-                        }
-                    });
-                });
-            });
-
             // Fullscreen functionality
-            const gameFrame = document.getElementById('game-frame');
             const gameContainer = document.getElementById('game-container');
             const fullscreenBtn = document.getElementById('fullscreen-btn');
 
